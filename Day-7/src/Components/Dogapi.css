@@ -1,0 +1,29 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+#main{
+  margin-top: 50px;
+  margin-left: 25%;
+}
+#childe{
+    height: 400px;
+    width: 400px;
+    margin-left: 23.5%;
+    margin-top: 30px;
+}
+#childe img{
+   height: 100%;
+   width: 100%;
+}
+button{
+    height: 50px;
+    width: 120px;
+    border: none;
+    font-size: 20px;
+    margin-left: 41%;
+    margin-top: 20px;
+    border-radius: 5px;
+    background-color: rgb(220, 174, 145);
+}
