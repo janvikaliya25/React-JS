@@ -1,0 +1,15 @@
+#form{
+    background-color: #FFFAEC;
+    border-radius: 10px;
+    /* border: 3px solid gray; */
+    box-shadow: 2px 3px 5px 4px;
+}
+p{
+    cursor: pointer;
+}
+#login,#signup{
+    height: 450px;
+}
+button{
+    width: 120px;
+}

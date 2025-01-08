@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+#form{
+    width: 400px;
+}
+#nav{
+    height: 80px;
+    background-color: bisque;
+}
+#btn{
+    height: 50px;
+    width: 150px;
+    font-size: 20px;
+}
+#btn2{
+    height: 50px;
+    width: 150px;
+    font-size: 20px;
+}
+#btn3{
+    /* height: 50px; */
+    width: 100px;
+    /* font-size: 20px; */
+}
