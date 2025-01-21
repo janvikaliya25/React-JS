@@ -1,0 +1,16 @@
+#main{
+    margin-left: 30%;
+    width: 40%;
+    margin-top: 5%;
+    background-color: bisque;
+    border-radius: 20px;
+    box-shadow: 2px 3px 4px 5px;
+}
+button{
+    width: 100px;
+    height: 35px;
+}
+p{
+    font-size: 12px;
+    margin-top: 10px;
+}
