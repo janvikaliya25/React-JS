@@ -25,7 +25,7 @@ function Productform({handlechange,handlesubmit}){
 
 
     return(
-        <div>
+        <div className="border">
             <h1>Product form</h1>
             <div>
                 <form action="" onSubmit={handlesubmit}>
