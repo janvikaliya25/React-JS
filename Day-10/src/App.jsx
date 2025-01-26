@@ -6,11 +6,13 @@ import './App.css'
 // import Product from './Componants/Product'
 // import Home from './Componants/Home'
 import MainRoutes from './Router/MainRoutes'
+import Navbar from './Componants/Navbar'
 
 function App() {
 
   return (
     <>
+    <Navbar></Navbar>
     <MainRoutes></MainRoutes>
     </>
   )

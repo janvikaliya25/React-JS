@@ -7,7 +7,8 @@ function Form() {
         title: "",
         price: "",
         id:v4()
-    });
+    })
+    console.log(state.id)
 
     const [arr, setArr] = useState(JSON.parse(localStorage.getItem("data")) || []);
 
