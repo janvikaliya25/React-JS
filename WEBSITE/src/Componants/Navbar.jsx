@@ -8,7 +8,7 @@ function Navbar(){
     return(
       // <div className="border border-danger" style={{height:"600px"}}>
       <div className='border border-dark border-2 d-flex justify-content-evenly align-items-center' style={{height:"80px"}}>
-            <Link className='text-decoration-none text-dark' to={'/'}>Home</Link>
+            <Link className='text-decoration-none text-dark' to={'/'}>NEW</Link>
             <Link className='text-decoration-none text-dark' to={"/Cart"}>Cart</Link>
             <Link className='text-decoration-none text-dark' to={"/Login"}>Login</Link>
             <Link className='text-decoration-none text-dark' to={"/Product"}>Product</Link>
