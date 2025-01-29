@@ -43,7 +43,7 @@ function Signup() {
       if (!value) {
         error = "Username is required";
       } else if (!usernameRegex.test(value)) {
-        error = "Username must be 3-15 characters long and contain only letters, numbers, and underscores.";
+        error = "Username lenght must be 3 and more.";
       }
     }
 
@@ -58,9 +58,10 @@ function Signup() {
     if (name === "password") {
       if (!value) {
         error = "Password is required";
-      } else if (!passwordRegex.test(value)) {
+      } 
+      else if (!passwordRegex.test(value)) {
         error =
-          "Password must be at least 6 characters long and include one uppercase, one lowercase, one number, and one special character.";
+          "Password must be 6 digit and strong.";
       }
     }
 
@@ -79,7 +80,7 @@ function Signup() {
       newErrors.username = "Username is required";
     } else if (!usernameRegex.test(state.username)) {
       newErrors.username =
-        "Username must be 3-15 characters long and contain only letters, numbers, and underscores.";
+        "Username must be lenght 3 and more.";
     }
 
     if (!state.email) {
@@ -92,7 +93,7 @@ function Signup() {
       newErrors.password = "Password is required";
     } else if (!passwordRegex.test(state.password)) {
       newErrors.password =
-        "Password must be at least 6 characters long and include one uppercase, one lowercase, one number, and one special character.";
+        "Password must be 6 diits and strong";
     }
 
     setErrors(newErrors);
@@ -124,7 +125,7 @@ function Signup() {
       Swal.fire({
         icon: "error",
         title: "Invalid Form",
-        text: "Please fix the errors in the form before submitting.",
+        text: "Please try again.",
       });
     }
   };
@@ -135,8 +136,8 @@ function Signup() {
       style={{ height: "500px" }}
     >
       <div
-        className="w-75 m-auto h-75 p-4 mt-5"
-        style={{ background: "white" }}
+        className="w-75 m-auto mt-5 p-4"
+        style={{ background: "white",height:"400px" }}
       >
         <h3 className="text-center">Welcome to Sugar</h3>
         <p className="text-center">(Get exciting deals :)</p>
@@ -192,4 +193,4 @@ function Signup() {
   );
 }
 
-export default Signup;
+export default Signup
