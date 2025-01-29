@@ -48,7 +48,7 @@ function Login() {
         error = "Password is required";
       } else if (!passwordRegex.test(value)) {
         error =
-          "Password must be at least 6 characters long, include one uppercase letter, one number, and one special character";
+          "Password is wrong";
       }
     }
 
@@ -60,23 +60,42 @@ function Login() {
     const { email} = state;
     const {password}=state;
 
-    if (!email || errors.email) {
+    if (!email) {
       Swal.fire("Error", "Please enter email", "error");
       return;
     }
-    if(!password || errors.password){
+    else if(errors.email){
+      Swal.fire
+      ("Error",
+         "Please enter valid email", 
+         "error");
+         return;
+    }
+    if(!password){
         Swal.fire(
             "Error",
             "please enter password",
             "error"
         );
+        return;
+    }
+    else if(errors.password){
+      Swal.fire(
+        "Error",
+        "please enter valid password",
+        "error"
+    );
+    return;
     }
 
     axios
       .post(`http://localhost:3000/user`, state)
       .then((res) => {
         Swal.fire("Success", "Login Successful", "success");
-        navigate("/Home");
+        // navigate("/Home");
+      })
+      .then(()=>{
+        navigate('/Home')
       })
       .catch((err) => {
         Swal.fire("Error", "Login failed, please try again", "error");
