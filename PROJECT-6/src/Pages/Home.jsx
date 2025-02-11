@@ -1,7 +1,11 @@
+import Movieinfo from "./Movieinfo";
+import Slider from "./Slider";
+
 export default function Home(){
     return(
         <div>
-            <h1>home</h1>
+            <Slider></Slider>
+           <Movieinfo></Movieinfo>
         </div>
     )
 }

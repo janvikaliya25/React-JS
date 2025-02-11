@@ -5,14 +5,17 @@ import './App.css'
 import LocalCrud from './Pages/LocalCrud'
 import PageNotFound from './Pages/PageNotFound'
 import MainRoutes from './Routes/MainRoutes'
-import Navbar from './Components/Navbar'
+import NavbarCode from './Components/Navbar'
+import Footer from './Components/Footer'
+
 
 function App() {
 
   return (
     <>
-    <Navbar></Navbar>
+    <NavbarCode></NavbarCode>
     <MainRoutes></MainRoutes>
+    <Footer></Footer>
     </>
   )
 }
