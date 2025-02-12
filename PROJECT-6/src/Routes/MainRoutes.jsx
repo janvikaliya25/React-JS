@@ -10,6 +10,7 @@ export default function MainRoutes(){
             <Routes>
                 <Route path="/" element={<Home></Home>}></Route>
                 <Route path="LocalCrud" element={<LocalCrud></LocalCrud>}></Route>
+                <Route path="/LocalCrud/:id" element={<LocalCrud></LocalCrud>}></Route>
                 <Route path="*" element={<PageNotFound></PageNotFound>}></Route>
             </Routes>
         </div>

@@ -4,10 +4,10 @@ import { Navbar, Nav} from 'react-bootstrap';
 import { Link } from "react-router-dom"
 export default function NavbarCode(){
     return(
-        <div className="border" style={{height:"110px"}}>
-            <header className="container border m-auto d-flex justify-content-between align-items-center" style={{height:"65px"}}>
-               <Nav.Link as={Link} to="/" className="border" style={{width:"15%",height:"100%"}}>
-                    <img src="https://brandlogos.net/wp-content/uploads/2022/10/bookmyshow-logo_brandlogos.net_rzqea.png" alt="" style={{height:"100px",width:"80%",backgroundSize:"cover",backgroundPosition:"center"}}/>
+        <div className="" style={{height:"110px"}}>
+            <header className="container m-auto d-flex justify-content-between align-items-center" style={{height:"65px"}}>
+               <Nav.Link as={Link} to="/" className="d-flex justify-content  align-items-center" style={{width:"15%",height:"100%"}}>
+                   <img src="https://in.bmscdn.com/webin/common/icons/logo.svg" alt="" />
                </Nav.Link>
                 <div className="h-100 d-flex justify-content-evenly align-items-center p-3" style={{width:"45%",position:"relative"}}>
                     <i class="fa-solid fa-magnifying-glass text-secondary" style={{position:"absolute",left:"30px"}}></i>
