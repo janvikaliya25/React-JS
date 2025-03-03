@@ -28,7 +28,7 @@ export default function Home() {
                         {arr.map((e, i) => (
                             <div key={i} className="border p-2 mt-4" style={{ width: "22%", height: "550px" }}>
                                 <div className="w-100" style={{ borderRadius: "10px", height: "400px" }}>
-                                    <img src={e.Image} alt={e.Image} className="w-100 h-100" style={{ borderRadius: "10px" }} />
+                                    <img src={e.Image} alt={e.Imagenpm} className="w-100 h-100" style={{ borderRadius: "10px" }} />
                                 </div>
                                 <div>
                                     <h5 className="card-title mt-3 fw-bold">{e.Name}</h5>

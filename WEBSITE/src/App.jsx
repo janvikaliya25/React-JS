@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import MainRoutes from './Routes/MainRoutes'
 import Navbarcode from './Componants/Navbarcode'
+import Footer from './Componants/Footer'
 
   
 function App() {
@@ -13,6 +14,7 @@ function App() {
     <>
     <Navbarcode></Navbarcode>
      <MainRoutes></MainRoutes>
+     <Footer></Footer>
     </>
   )
 }

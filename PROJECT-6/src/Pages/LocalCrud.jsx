@@ -106,7 +106,7 @@ export default function LocalCrud() {
                 {err.Type && <p className="text-danger">{err.Type}</p>}
                 <br />
 
-                <button type="submit" className="btn btn-danger">Submit</button>
+                <button type="submit" className="btn btn-danger" >{id ? "Update" : "Submit"}</button>
             </form>
         </div>
     );

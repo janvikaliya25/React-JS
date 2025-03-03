@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Navbarcode() {
   return (
-    <Navbar expand="lg" bg='light' className="border-bottom shadow-sm" style={{ height: "70px" }}>
+    <Navbar expand="lg" bg='light' className="border-bottom shadow-sm" style={{ height: "70px",zIndex:"2",position:"sticky",top:"0" }}>
       {/* Logo or Brand */}
       <Navbar.Brand as={Link} to="/" className="fw-bold text-dark h-100 d-flex justify-content-evenly align-items-center" style={{ width: "10%", marginLeft: "5%" }}>
         <img src="https://www.sugarcosmetics.com/cdn/shop/files/SUGAR_Cosmetics_Logo.png?v=1734589067&width=280" alt="" style={{ width: "90%", height: "40px" }} />
