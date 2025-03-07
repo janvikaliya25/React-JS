@@ -1,22 +1,104 @@
-*{
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-hr{
-    margin-top: 70px;
-    height: 3px;
-    background-color: white;
+
+.footer-container {
+    width: 100%;
 }
-#icon{
+
+/* Top Section */
+.top-section {
+    background-color: #313035;
+    padding: 20px 0;
+}
+
+.footer-icon {
+    width: 50px;
+}
+
+.footer-text h5,
+.footer-text p {
+    color: white;
+    font-size: 15px;
+    margin: 0;
+}
+
+.contact-btn {
+    margin-left: auto;
+    width: 150px;
+    font-size: 15px;
+    height: 40px;
+}
+
+.middle-section {
+    background-color: #404043;
+    padding: 20px 0;
+}
+
+.info-box {
+    text-align: center;
+    padding: 10px;
+    color: #b5b5b5;
+    min-width: 200px;
+}
+
+/* Bottom Section */
+.bottom-section {
+    background-color: #333338;
+    padding: 40px 0;
+}
+
+.bottom-section h5 {
+    font-size: 15px;
+    color: #a5a5a5;
+    margin-top: 20px;
+}
+
+.bottom-section p {
+    color: #7f7f7f;
+    font-size: 14px;
+}
+
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.social-icons i {
     background-color: #5d5d5f;
     border-radius: 50%;
     padding: 11px;
     font-size: 18px;
-    /* text-align: center; */
     height: 40px;
     width: 40px;
+    text-align: center;
+    color: white;
+    transition: 0.3s ease;
 }
-i:hover{
+
+.social-icons i:hover {
     background-color: white;
+    color: black;
+}
+
+
+@media (max-width: 768px) {
+    .top-section .container {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .contact-btn {
+        margin: 15px auto;
+    }
+
+    .info-box {
+        min-width: 150px;
+    }
 }

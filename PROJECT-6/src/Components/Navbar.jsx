@@ -1,70 +1,72 @@
-import React from "react"
-import 'bootstrap/dist/css/bootstrap.min.css'
-import { Navbar, Nav} from 'react-bootstrap';
-import { Link } from "react-router-dom"
-export default function NavbarCode(){
-    return(
-        <div className="" style={{height:"110px"}}>
-            <header className="container m-auto d-flex justify-content-between align-items-center" style={{height:"65px"}}>
-               <Nav.Link as={Link} to="/" className="d-flex justify-content  align-items-center" style={{width:"15%",height:"100%"}}>
-                   <img src="https://in.bmscdn.com/webin/common/icons/logo.svg" alt="" />
-               </Nav.Link>
-                <div className="h-100 d-flex justify-content-evenly align-items-center p-3" style={{width:"45%",position:"relative"}}>
-                    <i class="fa-solid fa-magnifying-glass text-secondary" style={{position:"absolute",left:"30px"}}></i>
-                    <input type="text" placeholder="Search for Movies,Events,Plays,Sports and Activities" className="form-control ps-5" style={{color:"gray",fontSize:"14px"}}/>
-                </div>
-                <div className=" h-100 w-25 d-flex justify-content-evenly align-items-center">
-                    <p className="mt-3"> location <span><i class="fa-solid fa-angle-down" style={{fontSize:"12px"}}></i></span></p>
-                    <Nav.Link as={Link} to="/LocalCrud"><button className="btn btn-danger" style={{fontSize:"13px"}}>Add Movies</button></Nav.Link>
-                    <p className="mt-3"><i class="fa-solid fa-bars "></i></p>
-                </div>
-            </header>
 
-            <nav class="navbar navbar-expand-lg bg-body-tertiary" style={{height:"44px"}}>
-  <div class="container">
-    {/* <a class="navbar-brand" href="#">Navbar</a> */}
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse d-flex justify-content-between align-items-center" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active">Movies</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active">Stream</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active">Events</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" >Plays</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" >Sports</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" >Activities</a>
-        </li>
-      </ul>
+import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Navbar, Nav, Container, Button, Form } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
-      <ul className=" navbar-nav" style={{fontSize:"13px"}}>
-      <li class="nav-item ms-3">
-          <a class="nav-link">ListYourShow</a>
-        </li>
-        <li class="nav-item ms-3">
-          <a class="nav-link " >Corporates</a>
-        </li>
-        <li class="nav-item ms-3">
-          <a class="nav-link " >Offers</a>
-        </li>
-        <li class="nav-item ms-3">
-          <a class="nav-link" >Gift Card</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-</div>
-    )
+export default function NavbarCode() {
+  return (
+    <>
+  
+      <Navbar expand="lg" className="bg-body-tertiary" style={{ height: "65px" }}>
+        <Container>
+        
+          <Navbar.Brand as={Link} to="/">
+            <img
+              src="https://in.bmscdn.com/webin/common/icons/logo.svg"
+              alt="Logo"
+              style={{ height: "40px" }}
+            />
+          </Navbar.Brand>
+
+        
+          <Form className="d-none d-lg-flex flex-grow-1 mx-3 position-relative">
+            <i
+              className="fa-solid fa-magnifying-glass text-secondary position-absolute"
+              style={{ left: "10px", top: "50%", transform: "translateY(-50%)" }}
+            ></i>
+            <Form.Control
+              type="text"
+              placeholder="Search for Movies, Events, Plays, Sports and Activities"
+              className="ps-4"
+              style={{ fontSize: "14px" }}
+            />
+          </Form>
+
+       
+          <div className="d-flex align-items-center">
+            <p className="m-0 me-3 d-none d-md-block">
+              Location <i className="fa-solid fa-angle-down"></i>
+            </p>
+            <Button as={Link} to="/LocalCrud" variant="danger" size="sm" className="me-3">
+              Add Movies
+            </Button>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          </div>
+        </Container>
+      </Navbar>
+
+    
+      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" className="py-2">
+        <Container>
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
+              <Nav.Link as={Link} to="/movies">Movies</Nav.Link>
+              <Nav.Link as={Link} to="/stream">Stream</Nav.Link>
+              <Nav.Link as={Link} to="/events">Events</Nav.Link>
+              <Nav.Link as={Link} to="/plays">Plays</Nav.Link>
+              <Nav.Link as={Link} to="/sports">Sports</Nav.Link>
+              <Nav.Link as={Link} to="/activities">Activities</Nav.Link>
+            </Nav>
+            <Nav>
+              <Nav.Link as={Link} to="/list-your-show">List Your Show</Nav.Link>
+              <Nav.Link as={Link} to="/corporates">Corporates</Nav.Link>
+              <Nav.Link as={Link} to="/offers">Offers</Nav.Link>
+              <Nav.Link as={Link} to="/gift-card">Gift Card</Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+    </>
+  );
 }

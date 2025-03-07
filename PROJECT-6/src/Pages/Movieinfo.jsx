@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -19,26 +18,40 @@ export default function Home() {
 
     return (
         <div className="container mt-4">
-            <h4 className="fw-bold">Recommended Movies</h4>
-            <div>
+            <h4 className="fw-bold text-center">Recommended Movies</h4>
+            <div className="row g-4 mt-3">
                 {arr.length === 0 ? (
                     <p className="text-center">No Movies Added.</p>
                 ) : (
-                    <div className="d-flex justify-content-between align-items-center flex-wrap">
-                        {arr.map((e, i) => (
-                            <div key={i} className="border p-2 mt-4" style={{ width: "22%", height: "550px" }}>
-                                <div className="w-100" style={{ borderRadius: "10px", height: "400px" }}>
-                                    <img src={e.Image} alt={e.Imagenpm} className="w-100 h-100" style={{ borderRadius: "10px" }} />
+                    arr.map((e, i) => (
+                        <div key={i} className="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <div className="card h-100 shadow">
+                                <div className="w-100" style={{ height: "400px" }}>
+                                    <img
+                                        src={e.Image}
+                                        alt={e.Imagenpm}
+                                        className="card-img-top h-100"
+                                        style={{ objectFit: "cover", borderRadius: "10px" }}
+                                    />
                                 </div>
-                                <div>
-                                    <h5 className="card-title mt-3 fw-bold">{e.Name}</h5>
+                                <div className="card-body text-center">
+                                    <h5 className="card-title fw-bold">{e.Name}</h5>
                                     <p className="card-text text-secondary">Type: {e.Type}</p>
-                                    <button className="btn btn-danger mt-3" style={{ width: "70px", fontSize: "12px" }} onClick={() => handleDelete(e.id)}>Delete</button>
-                                    <Link to={`/LocalCrud/${e.id}`}><button className="btn btn-secondary ms-5 mt-3" style={{ width: "60px", fontSize: "12px" }}>Edit</button></Link>
+                                    <div className="d-flex justify-content-center gap-3">
+                                        <button
+                                            className="btn btn-danger"
+                                            onClick={() => handleDelete(e.id)}
+                                        >
+                                            Delete
+                                        </button>
+                                        <Link to={`/LocalCrud/${e.id}`}>
+                                            <button className="btn btn-secondary">Edit</button>
+                                        </Link>
+                                    </div>
                                 </div>
                             </div>
-                        ))}
-                    </div>
+                        </div>
+                    ))
                 )}
             </div>
         </div>
