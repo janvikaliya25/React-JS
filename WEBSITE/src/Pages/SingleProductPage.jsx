@@ -1,61 +1,104 @@
 
-import axios from "axios";
+
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function SingleProductPage() {
-  const [state, setState] = useState({});
+  const [state, setState] = useState(null);
+  const [loading, setLoading] = useState(false);
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
-      .get(`https://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline`) 
+      .get("https://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline")
       .then((res) => {
-        const foundProduct = res.data.find((product) => product.id === parseInt(id));
-        if (foundProduct) {
-          setState(foundProduct);
-        } else {
-          console.error("Product not found");
-        }
-        console.log(res.data)
+        const foundProduct = res.data.find((product) => Number(product.id) === Number(id));
+        setState(foundProduct || null);
       })
-      .catch((err) => {
-        console.error("Error fetching product:", err);
-      });
+      .catch((err) => console.error("Error fetching product:", err));
   }, [id]);
 
+  const handleAddToCart = () => {
+    if (!state || loading) return;
+    setLoading(true);
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const existingProduct = cart.find((item) => item.id === state.id);
+
+    if (existingProduct) {
+      existingProduct.quantity += 1;
+    } else {
+      cart.push({ ...state, quantity: 1 });
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    setTimeout(() => {
+      setLoading(false);
+      navigate("/cart");
+    }, 500);
+  };
+
   return (
-    <div style={{height:"400px",width:"85%"}} className="border mt-5 m-auto">
-      {state.id ? (
-        <div className="d-flex justify-content-evenly align-items-center w-100 border h-100">
-          <div key={state.id} className="h-100 border w-50 d-flex justify-content-evenly align-items-center">
-            <img
-              src={state.image_link}
-              alt={state.name}
-            className="h-100"/>
+    <div className="container py-5">
+      {state ? (
+        <div className="row align-items-stretch g-4">
+         
+          <div className="col-lg-6 d-flex justify-content-center">
+            <div className="border p-4 shadow-sm bg-light rounded w-100 d-flex align-items-center justify-content-center">
+              <img
+                src={state.image_link}
+                alt={state.name}
+                className="img-fluid rounded"
+                style={{ maxHeight: "400px", width: "100%", objectFit: "contain" }}
+              />
+            </div>
           </div>
-          <div className="border w-50 h-100 p-3">
-            <h3>{state.name}</h3>
-            <h5>
-              {/* <strong>Product Type:</strong> {state.product_type} */}
-            </h5>
-            <p><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> (45)</p>
-            <p>
-              <strong>Brand:</strong> {state.brand}
-            </p>
-            <p>
-              <strong>Price:</strong> ₹{state.price}
-              <p>Tax included.</p>
-            </p>
-            <p>Color:01 Santorini Sunset</p>
-            <button className="form-control border-none bg-dark text-light" style={{borderRadius:"0px",height:"45px",fontSize:"12px"}}>
-              ADD TO CART
-            </button>
-            <hr></hr>
+
+          <div className="col-lg-6 d-flex">
+            <div className="border p-4 shadow-sm bg-white rounded w-100">
+              <h2 className="fw-bold">{state.name}</h2>
+              <p className="text-muted">
+                <i className="fa-solid fa-star text-warning"></i>
+                <i className="fa-solid fa-star text-warning"></i>
+                <i className="fa-solid fa-star text-warning"></i>
+                <i className="fa-solid fa-star text-warning"></i>
+                <i className="fa-solid fa-star text-warning"></i> (45 Reviews)
+              </p>
+              <p className="text-dark"><strong>Brand:</strong> {state.brand}</p>
+              <h4 className="text-success fw-bold">
+                {state.price ? `₹ ${state.price}` : "Price not available"}
+              </h4>
+              <p className="text-muted">Tax included.</p>
+              <p><strong>Color:</strong> 01 Santorini Sunset</p>
+
+                            <div className="d-grid gap-2 d-md-flex justify-content-md-start">
+                <button
+                  className="btn btn-dark py-2 fw-bold text-uppercase w-100 w-md-45"
+                  onClick={handleAddToCart}
+                  disabled={loading}
+                >
+                  {loading ? "Adding..." : "Add to Cart"}
+                </button>
+
+                <Link to={`/edit/${state.id}`} className="w-100 w-md-45">
+                  <button className="btn btn-outline-dark py-2 fw-bold text-uppercase w-100">
+                    Edit
+                  </button>
+                </Link>
+              </div>
+
+              <hr />
+              <Link to="/" className="text-decoration-none">
+                <p className="text-muted small">Fast & Secure Checkout Available</p>
+              </Link>
+            </div>
           </div>
         </div>
       ) : (
-        <p>Product is loading...</p>
+        <p className="text-danger text-center">Product not found.</p>
       )}
     </div>
   );

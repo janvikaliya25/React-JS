@@ -1,7 +1,7 @@
 
 import axios from "axios";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 function Login() {
@@ -30,11 +30,8 @@ function Login() {
 
   const validateField = (name, value) => {
     let error = "";
-
     const emailRegex = /^\S+@\S+\.\S+$/;
-    const passwordRegex =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
-
+    
     if (name === "email") {
       if (!value) {
         error = "Email is required";
@@ -46,73 +43,61 @@ function Login() {
     if (name === "password") {
       if (!value) {
         error = "Password is required";
-      } else if (!passwordRegex.test(value)) {
-        error =
-          "Password is wrong";
       }
     }
 
-    setErrors({ ...errors, [name]: error });
+    setErrors((prevErrors) => ({ ...prevErrors, [name]: error }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const { email} = state;
-    const {password}=state;
+    console.log("Submitting form with state:", state);
+  
+    if (validateForm()) {
+      console.log("Validation passed. Sending request...");
+      try {
+        // const response = await axios.post("http://localhost:3000/user", state);
+        const response = await axios.post("http://localhost:3000/login", state);
+        console.log("Server Response:", response.data);
+  
+        Swal.fire({
+          icon: "success",
+          title: "Signup Successful",
+          text: "You have successfully signed up!",
+        }).then(() => {
+          navigate("/");
+        });
+      } 
 
-    if (!email) {
-      Swal.fire("Error", "Please enter email", "error");
-      return;
+  catch (error) {
+    let message = "There was an error logging in. Please try again.";
+    if (error.response && error.response.status === 401) {
+      message = "Invalid email or password.";
     }
-    else if(errors.email){
-      Swal.fire
-      ("Error",
-         "Please enter valid email", 
-         "error");
-         return;
-    }
-    if(!password){
-        Swal.fire(
-            "Error",
-            "please enter password",
-            "error"
-        );
-        return;
-    }
-    else if(errors.password){
-      Swal.fire(
-        "Error",
-        "please enter valid password",
-        "error"
-    );
-    return;
-    }
+    Swal.fire({
+      icon: "error",
+      title: "Login Failed",
+      text: message,
+    });
+  }
+}
+  
 
-    axios
-      .post(`http://localhost:3000/user`, state)
-      .then((res) => {
-        Swal.fire("Success", "Login Successful", "success");
-        // navigate("/Home");
-      })
-      .then(()=>{
-        navigate('/Home')
-      })
-      .catch((err) => {
-        Swal.fire("Error", "Login failed, please try again", "error");
-      });
+  const validateForm = () => {
+    let isValid = true;
+    Object.keys(state).forEach((field) => {
+      validateField(field, state[field]); 
+      if (errors[field]) isValid = false;
+    });
+    return isValid;
   };
+  
 
   return (
-    <div
-      className="border border-dark w-50 m-auto mt-5 bg-dark"
-      style={{ height: "500px" }}
-    >
-      <div
-        className="w-75 m-auto mt-5 p-4"
-        style={{ background: "white", height: "400px" }}
-      >
+    <div className="d-flex justify-content-center align-items-center vh-100 bg-light">
+      <div className="card shadow-lg p-4 w-100" style={{ maxWidth: "400px" }}>
         <h4 className="text-center">Login</h4>
-        <form onSubmit={handleSubmit} className="w-75 m-auto p-3">
+        <form onSubmit={handleSubmit} className="mt-3">
           <div className="mb-3">
             <input
               type="email"
@@ -120,11 +105,8 @@ function Login() {
               value={state.email}
               onChange={handleChange}
               onBlur={handleBlur}
-              onFocus={() => setTouched({ ...touched, email: true })}
               placeholder="Enter Your Email"
-              className={`form-control ${
-                errors.email && touched.email ? "is-invalid" : ""
-              }`}
+              className={`form-control ${errors.email && touched.email ? "is-invalid" : ""}`}
             />
             {errors.email && touched.email && (
               <div className="invalid-feedback">{errors.email}</div>
@@ -137,24 +119,22 @@ function Login() {
               value={state.password}
               onChange={handleChange}
               onBlur={handleBlur}
-              onFocus={() => setTouched({ ...touched, password: true })}
               placeholder="Enter Your Password"
-              className={`form-control ${
-                errors.password && touched.password ? "is-invalid" : ""
-              }`}
+              className={`form-control ${errors.password && touched.password ? "is-invalid" : ""}`}
             />
             {errors.password && touched.password && (
               <div className="invalid-feedback">{errors.password}</div>
             )}
           </div>
-          <button type="submit" className="mt-2 btn btn-outline-secondary">
-            Submit
-          </button>
+          <button type="submit" className="btn btn-dark w-100">Login</button>
         </form>
         <hr />
+        <p className="text-center">
+          Don't have an account? <Link to='/Signup' className="text-decoration-none text-dark">Sign Up</Link>
+        </p>
       </div>
     </div>
-  );
+  )}
 }
 
 export default Login;

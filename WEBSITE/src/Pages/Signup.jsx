@@ -1,28 +1,22 @@
 
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
 
 function Signup() {
-  const [state, setState] = useState({
-    username: "",
-    email: "",
-    password: "",
-  });
-
+  const [state, setState] = useState({ username: "", email: "", password: "" });
   const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState({});
-
+  const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+  const API_URL = "http://localhost:3000/users";
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setState({ ...state, [name]: value });
-
-    if (touched[name]) {
-      validateField(name, value);
-    }
+    if (touched[name]) validateField(name, value);
   };
 
   const handleBlur = (e) => {
@@ -33,164 +27,90 @@ function Signup() {
 
   const validateField = (name, value) => {
     let error = "";
-
-    const usernameRegex = /^[a-zA-Z0-9_]{3,15}$/;
+    const usernameRegex = /^[a-zA-Z0-9_ ]{3,20}$/;
     const emailRegex = /^\S+@\S+\.\S+$/;
-    const passwordRegex =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
 
-    if (name === "username") {
-      if (!value) {
-        error = "Username is required";
-      } else if (!usernameRegex.test(value)) {
-        error = "Username lenght must be 3 and more.";
-      }
-    }
-
-    if (name === "email") {
-      if (!value) {
-        error = "Email is required";
-      } else if (!emailRegex.test(value)) {
-        error = "Invalid email format";
-      }
-    }
-
-    if (name === "password") {
-      if (!value) {
-        error = "Password is required";
-      } 
-      else if (!passwordRegex.test(value)) {
-        error =
-          "Password must be 6 digit and strong.";
-      }
-    }
-
-    setErrors({ ...errors, [name]: error });
+    if (name === "username" && (!value || !usernameRegex.test(value))) error = "Username must be 3-20 characters.";
+    if (name === "email" && (!value || !emailRegex.test(value))) error = "Invalid email format";
+    if (name === "password" && (!value || !passwordRegex.test(value))) error = "Weak password: 6+ chars, 1 uppercase, 1 number, 1 symbol.";
+    
+    setErrors((prevErrors) => ({ ...prevErrors, [name]: error }));
   };
 
-  const validateForm = () => {
-    const newErrors = {};
-
-    const usernameRegex = /^[a-zA-Z0-9_]{3,15}$/;
-    const emailRegex = /^\S+@\S+\.\S+$/;
-    const passwordRegex =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
-
-    if (!state.username) {
-      newErrors.username = "Username is required";
-    } else if (!usernameRegex.test(state.username)) {
-      newErrors.username =
-        "Username must be lenght 3 and more.";
-    }
-
-    if (!state.email) {
-      newErrors.email = "Email is required";
-    } else if (!emailRegex.test(state.email)) {
-      newErrors.email = "Invalid email format";
-    }
-
-    if (!state.password) {
-      newErrors.password = "Password is required";
-    } else if (!passwordRegex.test(state.password)) {
-      newErrors.password =
-        "Password must be 6 diits and strong";
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (validateForm()) {
-      axios
-        .post(`http://localhost:3000/user`, state)
-        .then((res) => {
-          Swal.fire({
-            icon: "success",
-            title: "Signup Successful",
-            text: "You have successfully signed up!",
-          }).then(() => {
-            navigate("/Login");
-          });
-        })
-        .catch((err) => {
-          Swal.fire({
-            icon: "error",
-            title: "Signup Failed",
-            text: "There was an error signing you up. Please try again.",
-          });
-        });
-    } else {
-      Swal.fire({
-        icon: "error",
-        title: "Invalid Form",
-        text: "Please try again.",
-      });
+    if (Object.values(errors).some(error => error)) {
+      Swal.fire({ icon: "error", title: "Invalid Form", text: "Please check all fields." });
+      return;
     }
+    
+    setLoading(true);
+    try {
+      const res = await axios.post(API_URL, state);
+      if (res.status === 201 || res.status === 200) {
+        Swal.fire({ icon: "success", title: "Signup Successful", text: "Welcome!" }).then(() => navigate("/"));
+      }
+    } catch (error) {
+      Swal.fire({ icon: "error", title: "Signup Failed", text: error.response?.data?.message || "An error occurred." });
+    }
+    setLoading(false);
   };
 
   return (
-    <div
-      className="border border-dark w-50 m-auto mt-5 bg-dark"
-      style={{ height: "500px" }}
-    >
-      <div
-        className="w-75 m-auto mt-5 p-4"
-        style={{ background: "white",height:"400px" }}
-      >
+    <div className="bg-light vh-100 d-flex justify-content-center align-items-center">
+      <div className="card p-4 shadow-lg" style={{ maxWidth: "400px", width: "100%" }}>
         <h3 className="text-center">Welcome to Sugar</h3>
-        <p className="text-center">(Get exciting deals :)</p>
-        <form action="" onSubmit={handleSubmit} className="w-75 m-auto p-3">
-          <div>
+        <p className="text-center text-muted">(Get exciting deals!)</p>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
             <input
               name="username"
               placeholder="Username"
               value={state.username}
               onChange={handleChange}
-              onFocus={() => setTouched({ ...touched, username: true })}
               onBlur={handleBlur}
               className="form-control"
             />
-            {errors.username && (
-              <p style={{ color: "red" }}>{errors.username}</p>
-            )}
+            {errors.username && <small className="text-danger">{errors.username}</small>}
           </div>
-          <div className="mt-2">
+          <div className="mb-3">
             <input
+              type="email"
               name="email"
               placeholder="Email"
               value={state.email}
               onChange={handleChange}
-              onFocus={() => setTouched({ ...touched, email: true })}
               onBlur={handleBlur}
               className="form-control"
             />
-            {errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
+            {errors.email && <small className="text-danger">{errors.email}</small>}
           </div>
-          <div className="mt-2">
+          <div className="mb-3 position-relative">
             <input
+              type={showPassword ? "text" : "password"}
               name="password"
-              type="password"
               placeholder="Password"
               value={state.password}
               onChange={handleChange}
-              onFocus={() => setTouched({ ...touched, password: true })}
               onBlur={handleBlur}
               className="form-control"
             />
-            {errors.password && (
-              <p style={{ color: "red" }}>{errors.password}</p>
-            )}
+            <button type="button" className="btn btn-sm btn-outline-secondary position-absolute top-50 end-0 translate-middle-y me-2" onClick={() => setShowPassword(!showPassword)}>
+              {showPassword ? "Hide" : "Show"}
+            </button>
+            {errors.password && <small className="text-danger">{errors.password}</small>}
           </div>
-          <button type="submit" className="mt-2 btn btn-outline-secondary">
-            Submit
+          <button type="submit" className="btn btn-dark w-100" disabled={loading}>
+            {loading ? "Signing up..." : "Sign Up"}
           </button>
+          <p className="text-center mt-3">
+            Already have an account? <Link to="/login">Login</Link>
+          </p>
         </form>
-        <hr />
       </div>
     </div>
   );
 }
 
-export default Signup
+export default Signup;

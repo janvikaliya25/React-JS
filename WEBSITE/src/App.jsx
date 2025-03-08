@@ -1,22 +1,16 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import MainRoutes from './Routes/MainRoutes'
-import Navbarcode from './Componants/Navbarcode'
-import Footer from './Componants/Footer'
+import MainRoutes from './Routes/MainRoutes';
+import Navbarcode from './Components/Navbarcode';
+import Footer from './Components/Footer'
+import './App.css';
 
-  
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-    <Navbarcode></Navbarcode>
-     <MainRoutes></MainRoutes>
-     <Footer></Footer>
+      <Navbarcode/>
+      <MainRoutes />
+      <Footer/>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
