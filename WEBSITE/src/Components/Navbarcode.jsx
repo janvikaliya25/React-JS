@@ -8,7 +8,7 @@ function Navbarcode() {
   return (
     <Navbar expand="lg" bg='light' className="border-bottom shadow-sm" style={{ height: "70px", zIndex: "2", position: "sticky", top: "0" }}>
      
-      <Navbar.Brand as={Link} to="/" className="fw-bold text-dark h-100 d-flex justify-content-evenly align-items-center" style={{ width: "10%", marginLeft: "5%" }}>
+      <Navbar.Brand as={Link} to="/" className="fw-bold text-dark h-100 d-flex justify-content-evenly align-items-center" style={{ width: "10%", marginLeft: "2%" }}>
         <img src="https://www.sugarcosmetics.com/cdn/shop/files/SUGAR_Cosmetics_Logo.png?v=1734589067&width=280" alt="Sugar Cosmetics Logo" style={{ width: "90%", height: "40px" }} />
       </Navbar.Brand>
 
@@ -38,7 +38,7 @@ function Navbarcode() {
         </Nav>
 
        
-        <Nav className="me-5 d-flex justify-content-evenly align-items-center" style={{ width: "15%" }}>
+        <Nav className="me-3 d-flex justify-content-evenly align-items-center" style={{ width: "15%" }}>
           <Nav.Link as={Link} to="/Cart" className="text-dark">
             <i className="bi bi-cart-plus"></i>
           </Nav.Link>
