@@ -100,9 +100,9 @@ export default function Contact() {
           <div className="col-md-5 text-center mb-4">
             <div className="contact-info p-4 rounded shadow-lg">
               <h4>Contact Info</h4>
-              <p><FaEnvelope className="contact-icon" /> Email: yourmail@example.com</p>
-              <p><FaPhone className="contact-icon" /> Phone: +91 12345 67890</p>
-              <p><FaMapMarkerAlt className="contact-icon" /> Location: Gujarat, India</p>
+              <p><FaEnvelope className="contact-icon" /> Email: janvikaliya@gmail.com</p>
+              <p><FaPhone className="contact-icon" /> Phone: +91 9737 ** ****</p>
+              <p><FaMapMarkerAlt className="contact-icon" /> Location: Kalawad Road Rajkot, Gujarat, India</p>
               {/* Social Media Links */}
               <div className="social-icons mt-3">
                 <a href="https://github.com/" target="_blank" rel="noopener noreferrer"><FaGithub /></a>
