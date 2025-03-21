@@ -14,6 +14,7 @@ import {
 import { SiTailwindcss, SiC, SiJquery, SiDatabricks } from "react-icons/si";
 import "./Skills.css";
 
+
 const skills = [
   { icon: <FaHtml5 size={50} color="#E34F26" />, name: "HTML", description: "Structuring web pages." },
   { icon: <FaCss3Alt size={50} color="#1572B6" />, name: "CSS", description: "Styling with CSS." },
@@ -33,19 +34,12 @@ export default function Skills() {
   return (
     <div className="container-fluid bg-dark text-white py-5 mt-5">
       <div className="text-center">
-        <img
-          src="your-profile-image.jpg"
-          className="rounded-circle shadow-lg img-fluid border"
-          width="120px"
-          height="120px"
-        //   alt="Profile"
-        />
         <h1 className="mt-3">I am Janvi Kaliya</h1>
         <p className="text-muted">Full-Stack Developer passionate about creating web applications.</p>
       </div>
 
       {/* skills section */}
-      <div className="container mt-5">
+      <div className="container">
         <h2 className="text-center mb-4">My Skills</h2>
         <div className="row">
            {skills.map((skill, index) => (

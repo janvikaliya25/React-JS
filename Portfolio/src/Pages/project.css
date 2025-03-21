@@ -1,0 +1,53 @@
+@media (max-width: 1280px) {
+    .project-container {
+        width: 90% !important;
+    }
+}
+
+@media (max-width: 992px) {
+    .project-container {
+        width: 92% !important;
+    }
+    .project-card {
+        width: 48% !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .project-container {
+        width: 95% !important;
+    }
+    .project-card {
+        width: 100% !important;
+    }
+}
+
+@media (max-width: 556px) {
+    .project-container {
+        width: 98% !important;
+    }
+    .project-card {
+        width: 100% !important;
+        height: auto !important; /* Adjust height for small screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .project-container {
+        width: 100% !important;
+    }
+    .project-card {
+        width: 100% !important;
+        height: auto !important;
+    }
+}
+
+.project-card .h-75 {
+    overflow-y: auto;  /* Enables vertical scrolling */
+    max-height: 750px; /* Ensures the container has a limited height */
+}
+
+.project-card .h-75 img {
+    height: 1200px; /* Image height is larger than the container to enable scrolling */
+    object-fit: cover;
+}

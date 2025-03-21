@@ -1,6 +1,7 @@
 
 import React from "react";
 import "./about.css"; 
+import myphoto from "../assets/Image/10.jpg"
 
 function About() {
   const education = [
@@ -25,7 +26,7 @@ function About() {
       <h1 className="text-center text-info fw-bold pt-3">About Me</h1>
             <div className="about-container">
         <div className="about-image">
-          <img src="" alt="" />
+          <img src={myphoto} alt="" />
         </div>
         <div className="about-text">
           <h2 className="text-info fw-bold mb-4">FRONTEND DEVELOPER</h2>
