@@ -1,0 +1,186 @@
+
+.animated-border {
+  position: relative;
+  padding: 20px;
+  border: 5px solid white;
+  /* border-radius: 10px; */
+  animation: borderAnimation 3s infinite linear alternate;
+  transition: all 0.3s ease-in-out;
+}
+
+
+@keyframes borderAnimation {
+  0% {
+      border-color: #ff4e50;
+      box-shadow: 0 0 10px #ff4e50;
+  }
+  33% {
+      border-color: #fc913a;
+      box-shadow: 0 0 10px #fc913a;
+  }
+  66% {
+      border-color: #f9d423;
+      box-shadow: 0 0 10px #f9d423;
+  }
+  100% {
+      border-color: #ff4e50;
+      box-shadow: 0 0 10px #ff4e50;
+  }
+} 
+
+
+
+.animated-border {
+  position: relative;
+  padding: 20px;
+  /* border-radius: 10px; */
+  background: #181818; 
+  border: 5px solid transparent; 
+}
+
+.animated-border::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  /* border-radius: 10px; */
+  border: 5px solid;
+  border-image-source: linear-gradient(45deg, #ff416c, #ff4b2b, #fc913a, #f9d423, #ff416c);
+  border-image-slice: 1;
+  animation: borderAnimation 4s infinite linear;
+}
+
+/* Gradient Animation */
+@keyframes borderAnimation {
+  0% {
+      border-image-source: linear-gradient(45deg, #ff416c, #ff4b2b, #fc913a, #f9d423, #ff416c);
+  }
+  50% {
+      border-image-source: linear-gradient(45deg, #f9d423, #fc913a, #ff4b2b, #ff416c, #f9d423);
+  }
+  100% {
+      border-image-source: linear-gradient(45deg, #ff416c, #ff4b2b, #fc913a, #f9d423, #ff416c);
+  }
+}
+ 
+.animated-border:hover {
+  animation: none;
+  border-color: #ffffff;
+  box-shadow: 0 0 20px #ffffff, 0 0 30px #ffffff;
+  transform: scale(1.02);
+}
+
+/* Gradient Button with Glow */
+.btn-gradient {
+  background: linear-gradient(45deg, #ff416c, #ff4b2b);
+  border: none;
+  color: white;
+  transition: all 0.4s ease-in-out;
+  animation: pulseGlow 2s infinite alternate;
+}
+
+/* Button Hover */
+.btn-gradient:hover {
+  background: linear-gradient(45deg, #ff4b2b, #ff416c);
+  transform: scale(1.05);
+  box-shadow: 0px 4px 20px rgba(255, 75, 43, 0.8);
+}
+
+/* Outline Button */
+.btn-outline-gradient {
+  background: transparent;
+  border: 2px solid #ff416c;
+  color: #ff416c;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Outline Button Hover */
+.btn-outline-gradient:hover {
+  background: linear-gradient(45deg, #ff4b2b, #ff416c);
+  color: white;
+  border: none;
+  transform: scale(1.05);
+  box-shadow: 0px 4px 20px rgba(255, 75, 43, 0.8);
+}
+
+/* Glow Pulse Animation */
+@keyframes pulseGlow {
+  0% {
+      box-shadow: 0px 0px 10px rgba(255, 75, 43, 0.5);
+  }
+  100% {
+      box-shadow: 0px 0px 20px rgba(255, 75, 43, 0.9);
+  }
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 1280px) {
+  .animated-border {
+      width: 50% !important;
+  }
+
+  .image-container {
+      width: 35% !important;
+      height: 450px !important;
+  }
+}
+
+@media (max-width: 992px) {
+  .animated-border {
+      width: 50% !important;
+  }
+
+  .image-container {
+      width: 40% !important;
+      height: 400px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-section {
+      flex-direction: column !important;
+      text-align: center;
+  }
+
+  .animated-border {
+      width: 80% !important;
+      margin-top: 80px;
+  }
+
+  .image-container {
+      width: 60% !important;
+      height: 350px !important;
+  }
+}
+
+@media (max-width: 556px) {
+  .animated-border {
+      width: 90% !important;
+      margin-top: 60px;
+  }
+
+  .image-container {
+      width: 75% !important;
+      height: 300px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .animated-border {
+      width: 95% !important;
+      margin-top: 50px;
+  }
+
+  .image-container {
+      width: 85% !important;
+      height: 250px !important;
+  }
+
+  .btn-gradient,
+  .btn-outline-gradient {
+      font-size: 14px !important;
+      padding: 8px 16px !important;
+  }
+}

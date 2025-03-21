@@ -1,0 +1,108 @@
+
+.skill-card {
+    transition: transform 0.3s ease-in-out, background 0.3s, box-shadow 0.3s;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(128, 128, 128, 0.2); 
+}
+.skill-card:hover .icon-container {
+    transform: scale(1.05);
+    background-color: #222;
+    box-shadow: 0px 6px 15px rgba(255, 255, 255, 0.2);
+    animation: rotateIcon 1s linear infinite;
+}
+
+.icon-container {
+    width: 70px;
+    height: 70px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+
+@keyframes rotateIcon {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+/* Skill Card - Animated Gradient Border */
+.skill-card {
+  position: relative;
+  padding: 20px;
+  border-radius: 10px;
+  background: #2c2c2c; /* Dark background */
+  overflow: hidden;
+}
+
+.skill-card::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #ff6b6b, #ff8e53, #ffca28, #8bc34a, #42a5f5, #ab47bc, #ff6b6b);
+  background-size: 300% 300%;
+  border-radius: 10px;
+  z-index: -1;
+  animation: borderAnimation 4s infinite linear;
+}
+
+@keyframes borderAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+
+
+.skill-card {
+    position: relative;
+    padding: 20px;
+    border-radius: 12px;
+    background: #2c2c2c; 
+    color: white;
+    overflow: hidden;
+    z-index: 1;
+  }
+  
+  .skill-card::before {
+    content: "";
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    background: linear-gradient(45deg, #ff6b6b, #ff8e53, #ffca28, #8bc34a, #42a5f5, #ab47bc, #ff6b6b);
+    background-size: 300% 300%;
+    border-radius: 12px;
+    z-index: -1;
+    animation: borderAnimation 4s infinite linear;
+  }
+  
+
+  .skill-card::after {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    bottom: 2px;
+    background: #2c2c2c;
+    border-radius: 10px;
+    z-index: -1;
+  }
+  
+  @keyframes borderAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  

@@ -1,6 +1,6 @@
 function Resume(){
     return(
-        <div>
+        <div className="" style={{marginTop:"60px"}}>
             resume
         </div>
     )
