@@ -5,7 +5,7 @@ import "./home.css";
 
 function Home() {
   return (
-    <div>
+    <div>  
       <section className="home-section bg-dark text-white d-flex align-items-center justify-content-evenly vh-100 gap-5">
         
         {/* Introduction Section */}
