@@ -116,7 +116,7 @@ import React from 'react';
 import { Navbar, Nav, NavDropdown, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './Navbarcode.css'; // Importing CSS file
+import './Navbar.css'; // Importing CSS file
 
 function Navbarcode() {
   return (

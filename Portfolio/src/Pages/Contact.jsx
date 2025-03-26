@@ -49,8 +49,8 @@ export default function Contact() {
               <p><FaMapMarkerAlt className="contact-icon" /> Location: Kalawad Road Rajkot, Gujarat, India</p>
               {/* Social Media Links */}
               <div className="social-icons mt-3">
-                <a href="https://github.com/" target="_blank" rel="noopener noreferrer"><FaGithub /></a>
-                <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer"><FaLinkedin /></a>
+                <a href="https://github.com/janvikaliya25" target="_blank" rel="noopener noreferrer"><FaGithub /></a>
+                <a href="https://www.linkedin.com/in/janvi-kaliya-a73a522a9/" target="_blank" rel="noopener noreferrer"><FaLinkedin /></a>
                 <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
               </div>
             </div>

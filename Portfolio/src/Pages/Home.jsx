@@ -2,6 +2,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
 import "./home.css"; 
+import Headline from "./headline";
 
 function Home() {
   return (
@@ -11,8 +12,10 @@ function Home() {
         {/* Introduction Section */}
         {/* Introduction Section */}
            <div className="animated-border" style={{ width: "43%" }}>
-               <h1 className="display-4 fw-bold">Hello, I'm <span>Janvi Kaliya</span></h1>
-               <p className="lead fs-2">Frontend Developer | React Enthusiast</p>
+            <h2 className="display-5 fw-bold">Welcome to My Portfolio</h2>
+               <h3 className="">Hello, I'm <span>Janvi Kaliya</span></h3>
+               <Headline/>
+               <a href="https://github.com/janvikaliya25" className="">Github : janvikaliya25 <i class="fa-solid fa-arrow-right"></i></a>
                <div className="mt-4">
                   <Link to="/projects" className="btn btn-gradient btn-lg me-3 shadow">View Projects</Link>
                   <Link to="/contact" className="btn btn-outline-gradient btn-lg shadow">Hire Me</Link>
