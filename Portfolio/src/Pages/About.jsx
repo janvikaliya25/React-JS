@@ -25,7 +25,7 @@ function About() {
       {/* About Me Section */}
       <h1 className="text-center text-info fw-bold pt-3">About Me</h1>
             <div className="about-container">
-        <div className="about-image">
+        <div className="about-image border border-info">
           <img src={myphoto} alt="" />
         </div>
         <div className="about-text">

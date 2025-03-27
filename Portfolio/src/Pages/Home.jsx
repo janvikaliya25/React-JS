@@ -11,12 +11,13 @@ function Home() {
         
         {/* Introduction Section */}
         {/* Introduction Section */}
-           <div className="animated-border" style={{ width: "43%" }}>
+           <div className="" style={{ width: "43%" }}>
             <h2 className="display-5 fw-bold">Welcome to My Portfolio</h2>
                <h3 className="">Hello, I'm <span>Janvi Kaliya</span></h3>
                <Headline/>
-               <a href="https://github.com/janvikaliya25" className="">Github : janvikaliya25 <i class="fa-solid fa-arrow-right"></i></a>
-               <div className="mt-4">
+               <a href="https://github.com/janvikaliya25" className="" id="a">Github : janvikaliya25 <i class="fa-solid fa-arrow-right" style={{fontSize:"12px"}}></i></a> <br />
+               <a href="https://www.linkedin.com/in/janvi-kaliya-a73a522a9/" id="a">Linkdin : Janvi Kaliya <i class="fa-solid fa-arrow-right" style={{fontSize:"12px"}}></i></a>
+               <div className="mt-3">
                   <Link to="/projects" className="btn btn-gradient btn-lg me-3 shadow">View Projects</Link>
                   <Link to="/contact" className="btn btn-outline-gradient btn-lg shadow">Hire Me</Link>
                </div>
